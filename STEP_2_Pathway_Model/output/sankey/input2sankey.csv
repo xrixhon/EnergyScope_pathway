@@ -1,0 +1,51 @@
+source,target,realValue,layerID,layerColor,layerUnit
+NG imports,Gas,248.88,Gas,#FFD700,TWh
+Gas,Mob public,2.97,NG,#FFD700,TWh
+Gas,Freight,15.34,NG,#FFD700,TWh
+Gas,H2 prod,4.51,NG,#FFD700,TWh
+H2 prod,H2,3.31,H2,#FF00FF,TWh
+Gas,Elec,65.36,NG,#FFD700,TWh
+Gas,CHP,59.29,NG,#FFD700,TWh
+Gas,Boilers,0.14,NG,#FFD700,TWh
+Electricity,Elec,10.18,Electricity,#00BFFF,TWh
+Wind,Elec,33.21,Wind,#27AE34,TWh
+Hydro River,Elec,0.68,Hydro River,#0000FF,TWh
+Coal,Elec,4.19,Coal,#A0522D,TWh
+Coal,Boilers,16.23,Coal,#A0522D,TWh
+Solar,Elec,59.07,Solar,#FFFF00,TWh
+Solar,Heat LT Dec,0.07,Solar,#FFFF00,TWh
+Solar,Dec. Sto,0.02,Solar,#FFFF00,TWh
+Waste,Boilers,9.80,Waste,#808000,TWh
+Wood,Boilers,17.31,Wood,#CD853F,TWh
+Wet biomass,Biomethanation,1.15,Wood,#CD853F,TWh
+Biomethanation,Gas,1.07,NG,#FFD700,TWh
+Elec,Mob priv,6.46,Electricity,#00BFFF,TWh
+Elec,Mob public,10.15,Electricity,#00BFFF,TWh
+Elec,Freight,1.67,Electricity,#00BFFF,TWh
+Elec,Exp & Loss,8.36,Electricity,#00BFFF,TWh
+Elec,Curt.,7.56,Electricity,#00BFFF,TWh
+Elec,Elec demand,91.83,Electricity,#00BFFF,TWh
+Elec,Storage,0.08,Electricity,#00BFFF,TWh
+Storage,Elec demand,0.07,Electricity,#00BFFF,TWh
+Elec,HPs,40.81,Electricity,#00BFFF,TWh
+Elec,Electrolysis,0.84,Electricity,#00BFFF,TWh
+Electrolysis,H2 sto.,0.82,H2,#FF00FF,TWh
+H2 sto.,H2,0.78,H2,#FF00FF,TWh
+Electrolysis,H2,-0.06,H2,#FF00FF,TWh
+Elec,Heat HT,4.08,Electricity,#00BFFF,TWh
+H2,Mob priv,3.98,H2,#FF00FF,TWh
+CHP,Elec,26.19,Electricity,#00BFFF,TWh
+CHP,DHN,0.65,Heat LT,#FA8072,TWh
+CHP,Heat HT,26.52,Heat HT,#DC143C,TWh
+HPs,Heat LT Dec,58.94,Heat LT,#FA8072,TWh
+HPs,DHN,51.52,Heat LT,#FA8072,TWh
+HPs,Dec. Sto,24.84,Heat LT,#FA8072,TWh
+Boilers,Heat LT Dec,1.44,Heat LT,#FA8072,TWh
+Boilers,Dec. Sto,0.02,Heat LT,#FA8072,TWh
+Boilers,Heat HT,34.72,Heat HT,#DC143C,TWh
+Dec. Sto,Heat LT Dec,22.78,Heat LT,#FA8072,TWh
+DHN,Heat LT DHN,-1.90,Heat LT,#FA8072,TWh
+DHN,Loss DHN,2.61,Heat LT,#FA8072,TWh
+DHN,DHN Sto,51.47,Heat LT,#FA8072,TWh
+DHN Sto,Heat LT DHN,50.91,Heat LT,#FA8072,TWh
+Gas,Non-Energy,102.33,NG,#FFD700,TWh

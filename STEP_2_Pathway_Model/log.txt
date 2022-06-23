@@ -1,0 +1,218 @@
+output
+#				incremental	total
+#phase		seconds		memory		memory
+#execute	0.078125	4627816		4627816
+### ses_Pathway_main_test.run:95(3625)   option ...
+#execute	0		0		4627816
+### ses_Pathway_main_test.run:97(3661)   option ...
+#execute	0		0		4627816
+### ses_Pathway_main_test.run:100(3735)   option ...
+#execute	0		0		4627816
+### ses_Pathway_main_test.run:103(3842)   solve ...
+#compile	0		115328		4743144
+##genmod times:
+##seq      seconds    cum. sec.    mem. inc.  name
+## 87            0            0            0  derstage
+## 91            0            0            0  sstatus
+## 107            0            0            0  YEARS_AFTER
+## 109            0            0            0  PHASE_START
+## 110            0            0            0  PHASE_STOP
+## 111            0            0            0  PERIODS
+## 112            0            0            0  SECTORS
+## 113            0            0            0  END_USES_INPUT
+## 116            0            0            0  RESOURCES
+## 117            0            0            0  BIOFUELS
+## 118            0            0            0  EXPORT
+## 124            0            0            0  LAYERS
+## 126            0            0         2584  TECHNOLOGIES_OF_END_USES_CATEGORY
+## 127            0            0            0  RE_RESOURCES
+## 131            0            0            0  t_phase
+## 132            0            0            0  diff_2015_phase
+## 133            0            0            0  gwp_limit_transition
+## 134            0            0            0  end_uses_demand_year
+## 135            0            0          520  end_uses_input
+## 139            0            0            0  share_mobility_public_min
+## 140            0            0            0  share_mobility_public_max
+## 141            0            0            0  share_freight_train_min
+## 142            0            0            0  share_freight_train_max
+## 143            0            0            0  share_freight_road_min
+## 144            0            0            0  share_freight_road_max
+## 145            0            0            0  share_freight_boat_min
+## 146            0            0            0  share_freight_boat_max
+## 147            0            0            0  share_heat_dhn_min
+## 148            0            0            0  share_heat_dhn_max
+## 149            0            0            0  t_op
+## 150            0            0            0  lighting_month
+## 151            0            0            0  heating_month
+## 152            0            0            0  layers_in_out
+## 154            0            0            0  c_inv
+## 155            0            0            0  c_maint
+## 156            0            0            0  lifetime
+## 161            0            0            0  c_p_t
+## 162            0            0            0  c_p
+## 163            0            0        56416  tau
+## 164     0.015625     0.015625            0  gwp_constr
+## 165            0     0.015625            0  total_time
+## 166            0     0.015625            0  c_op
+## 167            0     0.015625            0  avail
+## 168            0     0.015625            0  gwp_op
+## 169            0     0.015625            0  storage_eff_in
+## 170            0     0.015625            0  storage_eff_out
+## 171            0     0.015625            0  storage_losses
+## 175            0     0.015625            0  loss_network
+## 176            0     0.015625            0  peak_sh_factor
+## 177     0.015625      0.03125            0  c_grid_extra
+## 178            0      0.03125            0  annualised_factor
+## 179            0      0.03125            0  elec_max_import_share
+## 180            0      0.03125            0  limit_LT_renovation
+## 181            0      0.03125            0  limit_pass_mob_changes
+## 182            0      0.03125            0  limit_freight_changes
+## 183            0      0.03125            0  efficiency
+## 184            0      0.03125        65112  F_newBuild
+## 186            0      0.03125       467296  F_decommissioning
+## 188            0      0.03125            0  Phase_investment
+## 190            0      0.03125            0  TotalTransitionCost
+## 196            0      0.03125        48712  F_old
+## 198            0      0.03125       155832  End_Uses
+## 200            0      0.03125            0  F_Mult
+## 202            0      0.03125      1066672  F_Mult_t
+## 204            0      0.03125            0  C_inv
+## 206            0      0.03125         8200  C_maint
+## 208            0      0.03125        32800  C_op
+## 210            0      0.03125      1176720  Storage_In
+## 212            0      0.03125       262160  Storage_Out
+## 214            0      0.03125            0  Share_Mobility_Public
+## 216            0      0.03125            0  Share_Freight_Train
+## 218            0      0.03125            0  Share_Freight_Road
+## 220            0      0.03125            0  Share_Freight_Boat
+## 222            0      0.03125            0  Share_Heat_Dhn
+## 224            0      0.03125            0  Power_nuclear
+## 226            0      0.03125            0  Shares_Mobility_Passenger
+## 228            0      0.03125            0  Shares_Mobility_Freight
+## 230            0      0.03125         3104  Shares_LowT_Dec
+## 232            0      0.03125         2064  F_Solar
+## 234            0      0.03125        35904  F_Mult_t_Solar
+## 236            0      0.03125        90216  Network_losses
+## 238            0      0.03125        16400  GWP_constr
+## 240            0      0.03125            0  GWP_op
+## 242            0      0.03125            0  TotalGWP
+## 244            0      0.03125            0  TotalCost
+## 246            0      0.03125       143912  end_uses_t
+## 248            0      0.03125            0  Freight_shares
+## 250            0      0.03125        38400  totalcost_cal
+## 252            0      0.03125        38400  investment_cost_calc
+## 254            0      0.03125        24600  main_cost_calc
+## 256            0      0.03125        38400  op_cost_calc
+## 258            0      0.03125        38400  totalGWP_calc
+## 260            0      0.03125        30768  gwp_constr_calc
+## 262            0      0.03125        38400  gwp_op_calc
+## 264     0.015625     0.046875        30768  size_limit
+## 266            0     0.046875      1684168  capacity_factor_t
+## 268            0     0.046875       230400  capacity_factor
+## 270            0     0.046875        38400  resource_availability
+## 272     0.109375      0.15625      1263648  layer_balance
+## 274     0.015625     0.171875        40456  storage_level
+## 276            0     0.171875         4104  limit_energy_stored_to_maximum
+## 278            0     0.171875       778304  storage_layer_in
+## 280            0     0.171875       738840  storage_layer_out
+## 282      0.03125     0.203125        76800  network_losses
+## 284            0     0.203125            0  extra_grid
+## 286            0     0.203125            0  extra_dhn
+## 288            0     0.203125            0  constantNuc
+## 290            0     0.203125       183448  operating_strategy_mob_passenger
+## 292     0.015625      0.21875        71208  operating_strategy_mobility_freight
+## 294            0      0.21875        63000  thermal_solar_capacity_factor
+## 296            0      0.21875            0  thermal_solar_total_capacity
+## 298            0      0.21875       101400  decentralised_heating_balance
+## 300            0      0.21875        63000  peak_lowT_dec
+## 302            0      0.21875            0  Max_Heat_Demand_DHN
+## 304            0      0.21875            0  max_dhn_heat_demand
+## 306            0      0.21875            0  peak_dhn
+## 308            0      0.21875            0  Minimum_GWP_reduction
+## 310            0      0.21875            0  Minimum_GWP_transition
+## 312            0      0.21875        38400  Minimum_RE_share
+## 314      0.03125         0.25      1264704  f_max_perc
+## 316            0         0.25       202824  f_min_perc
+## 318            0         0.25            0  extra_efficiency
+## 320            0         0.25            0  mob_infrastructures_motorways
+## 322            0         0.25        38400  mob_infrastructures_roads
+## 324            0         0.25            0  mob_infrastructures_rails
+## 326            0         0.25        38400  infrastructures_stations_liq
+## 328            0         0.25            0  infrastructures_stations_gas
+## 330            0         0.25            0  infrastructures_stations_elec
+## 332            0         0.25            0  infrastructures_stations_h2
+## 334            0         0.25            0  C_opex
+## 336            0         0.25            0  C_opex_tot
+## 338            0         0.25        38400  Opex_cost_calculation
+## 340            0         0.25            0  Opex_tot_cost_calculation
+## 342            0         0.25            0  C_capex_tot
+## 344            0         0.25            0  total_capex
+## 346            0         0.25            0  AGE
+## 348            0         0.25       235632  phase_new_build
+## 350            0         0.25       734744  define_f_decom_properly
+## 352            0         0.25            0  F_new_initiatlisation
+## 354            0         0.25       120904  phase_out_assignement
+## 356            0         0.25        16400  Delta_change
+## 358            0         0.25       449616  delta_change_definition
+## 360            0         0.25            0  limit_changes_heat
+## 362            0         0.25            0  limit_changes_mob
+## 364            0         0.25            0  limit_changes_fright
+## 366            0         0.25            0  investment_computaiton
+## 368            0         0.25            0  maxInvestment
+## 370            0         0.25            0  Fixed_phase_investment
+## 372            0         0.25            0  sameInvestmentPerPhase
+## 374            0         0.25            0  New_totalTransitionCost_calculation
+## 376            0         0.25        38400  elec_import_limit_share
+## 380            0         0.25            0  obj
+## 382            0         0.25            0  elec_prod_NUCLEAR
+## 384            0         0.25            0  elec_prod_CCGT
+## 386            0         0.25            0  elec_prod_COAL_US
+## 388            0         0.25            0  elec_prod_COAL_IGCC
+## 390            0         0.25            0  elec_prod_PV
+## 392            0         0.25            0  elec_prod_WIND_ONSHORE
+## 394            0         0.25            0  elec_prod_WIND_OFFSHORE
+## 396            0         0.25            0  elec_prod_GEOTHERMAL
+#genmod		0.25		12469336	17212480
+#merge		0		1048584		18261064
+#collect	0.015625	14128736	32389800
+
+Presolve eliminates 38200 constraints and 34186 variables.
+Adjusted problem:
+18521 variables, all linear
+20830 constraints, all linear; 98251 nonzeros
+	9416 equality constraints
+	11414 inequality constraints
+1 linear objective; 1 nonzero.
+
+#presolve	0.171875	12801736	45191536
+#output		0.078125	0		45191536
+#Total		0.59375
+CPLEX 12.7.1.0: iisfind=1
+dualopt
+CPLEX 12.7.1.0: optimal solution; objective 1427653.591
+26807 dual simplex iterations (0 in phase I)
+#execute	0.03125		6726864		51918400
+### ses_Pathway_main_test.run:109(4050)   display ...
+#compile	0		1032		51919432
+##genmod times:
+##seq      seconds    cum. sec.    mem. inc.  name
+##  7            0            0            0  solve_result_num
+#genmod		0		2056		51921488
+solve_result_num = 0
+
+#execute	0		4104		51925592
+### ses_Pathway_main_test.run:110(4079)   display ...
+#compile	0		0		51925592
+##genmod times:
+##seq      seconds    cum. sec.    mem. inc.  name
+## 28            0            0            0  _solve_elapsed_time
+#genmod		0		0		51925592
+_solve_elapsed_time = 9.61
+
+#execute	0		0		51925592
+### ses_Pathway_main_test.run:114(4163)   option ...
+### ses_Pathway_main_test.run:115(4194)   option ...
+
+ses_Pathway_main_test.run, line 130 (offset 4748):
+	diff_2015_year is not defined
+context:  printf "%s\t%.6f\t%.6f\t%.6f\n", p, Phase_investment[p], max_inv_phase[p], diff_2015_year[p]    >>> >> <<<  (PathName & "/phase.txt");

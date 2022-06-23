@@ -1,0 +1,170 @@
+# -------------------------------------------------------------------------------------------------------------------------																													
+#	EnergyScope TD is an open-source energy model suitable for country scale analysis. It is a simplified representation of an urban or national energy system accounting for the energy flows																												
+#	within its boundaries. Based on a hourly resolution, it optimises the design and operation of the energy system while minimizing the cost of the system.																												
+#																													
+#	Copyright (C) <2018-2019> <Ecole Polytechnique Fédérale de Lausanne (EPFL), Switzerland and Université catholique de Louvain (UCLouvain), Belgium>																												
+#																													
+#																													
+#	Licensed under the Apache License, Version 2.0 (the "License");																												
+#	you may not use this file except in compliance with the License.																												
+#	You may obtain a copy of the License at																												
+#																													
+#	http://www.apache.org/licenses/LICENSE-2.0																												
+#																													
+#	Unless required by applicable law or agreed to in writing, software																												
+#	distributed under the License is distributed on an "AS IS" BASIS,																												
+#	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.																												
+#	See the License for the specific language governing permissions and																												
+#	limitations under the License.																												
+#																													
+#	Description and complete License: see LICENSE file.																												
+# -------------------------------------------------------------------------------------------------------------------------																													
+																													
+# Colors meaning :																													
+# Specific to belgium : RED																													
+# NON energy used : Blue																													
+# Freight mobility by boat : GREEN																													
+# Synthetic fuels and storage : Yellow																													
+# Wet biomass, Biomethanation and chp : Purple																													
+																													
+#ADDITIONNAL DATA FROM GG : 																													
+#Layers : CO2_ATM CO2_CIMENT CO2_CAPTURED																													
+#Technologies : CIMENT_CCS ATM_CCS SYN_METHANATION CO2_STORAGE																													
+#Sources : 																													
+# CIMENT_CCS																													
+# ATM_CCS																													
+# SYN_METHANATION																													
+# CO2_CIMENT : https://www.holcim.ch/sites/switzerland/files/atoms/files/donnees_environnementales_2015.pdf page 3 table. 1.5 MTCO2																													
+# CO2_STORAGE : 																													
+# CO2 layers are in Mmol = 1e6 mol. 1 mol of CO2 required per mol of CH4 => 1 GWh of CH4 (<=> 80tCH4) requires 0.22 ktCO2																													
+																													
+# UNIT MEASURES:																													
+# Unless otherwise specified units are:																													
+# Energy [GWh], Power [GW], Cost [MCHF], Time [h], Passenger transport [Mpkm], Freight Transport [Mtkm]																													
+																													
+# References based on Supplementary material																													
+																													
+##New set for PATHWAY:																													
+set	YEARS	:=	YEAR_2015	YEAR_2020	YEAR_2025	YEAR_2030	YEAR_2035	YEAR_2040	YEAR_2045	YEAR_2050	;																		
+set PHASE := 	2015_2020	2020_2025	2025_2030	2030_2035	2035_2040	2040_2045	2045_2050;																						
+set PHASE_START["2015_2020"] :=	YEAR_2015;																												
+set PHASE_START["2020_2025"] :=	YEAR_2020;																												
+set PHASE_START["2025_2030"] :=	YEAR_2025;																												
+set PHASE_START["2030_2035"] :=	YEAR_2030;																												
+set PHASE_START["2035_2040"] :=	YEAR_2035;																												
+set PHASE_START["2040_2045"] :=	YEAR_2040;																												
+set PHASE_START["2045_2050"] :=	YEAR_2045;																												
+																													
+set PHASE_STOP["2015_2020"] :=	YEAR_2020;																												
+set PHASE_STOP["2020_2025"] :=	YEAR_2025;																												
+set PHASE_STOP["2025_2030"] :=	YEAR_2030;																												
+set PHASE_STOP["2030_2035"] :=	YEAR_2035;																												
+set PHASE_STOP["2035_2040"] :=	YEAR_2040;																												
+set PHASE_STOP["2040_2045"] :=	YEAR_2045;																												
+set PHASE_STOP["2045_2050"] :=	YEAR_2050;																												
+																													
+									
+
+####MONTHLY VERSION : 
+
+param peak_sh_factor	:=	2
+;
+set PERIODS := 1	2	3	4	5	6	7	8	9	10	11	12;
+# [Table A.7, Table A.20]
+param c_p_t:	1	2	3	4	5	6	7	8	9	10	11	12	:=
+PV	0.021509685	0.04321476	0.077131247	0.129695159	0.136502023	0.15139642	0.128041205	0.124839483	0.086324831	0.052924337	0.026806308	0.021614542	
+WIND_ONSHORE	0.126704449	0.084238169	0.0970127	0.061950757	0.075685766	0.056838492	0.06769788	0.048485327	0.071238478	0.038613795	0.128930916	0.142603271	
+WIND_OFFSHORE	0.109035522	0.075436027	0.090876511	0.057282253	0.075501447	0.065179947	0.079052952	0.053732384	0.072091	0.048335082	0.128950274	0.1445266	
+HYDRO_RIVER	0.059648987	0.041322438	0.051431653	0.069371452	0.120595178	0.125026468	0.124621626	0.113242707	0.091537287	0.075575442	0.071562354	0.056064409	
+DHN_SOLAR	0.031573497	0.056297288	0.070564374	0.121540983	0.135838054	0.119678631	0.102594529	0.122736628	0.107157001	0.071183085	0.035982029	0.024853902	
+DEC_SOLAR	0.031573497	0.056297288	0.070564374	0.121540983	0.135838054	0.119678631	0.102594529	0.122736628	0.107157001	0.071183085	0.035982029	0.024853902	
+;
+# [Table A.4]
+param: 	t_op	lighting_month	heating_month	:=
+1	744	0.090849485	0.166134387
+2	672	0.081261673	0.146412347
+3	744	0.089396721	0.135247768
+4	720	0.078683046	0.07955448
+5	744	0.080557156	0.040560705
+6	720	0.07919648	0.023683397
+7	744	0.078465043	0.010958535
+8	744	0.08043813	0.011111407
+9	720	0.081699259	0.031690855
+10	744	0.083875069	0.073670603
+11	720	0.086190355	0.117022868
+12	744	0.089387582	0.16395265
+;
+																												
+# --------------------------																													
+# SETS not depending on TD																													
+# --------------------------																													
+																													
+set SECTORS := 	HOUSEHOLDS	SERVICES	INDUSTRY	TRANSPORTATION;																									
+set END_USES_INPUT := 	ELECTRICITY	LIGHTING	HEAT_HIGH_T	HEAT_LOW_T_SH	HEAT_LOW_T_HW	MOBILITY_PASSENGER	MOBILITY_FREIGHT	NON_ENERGY	;																				
+set END_USES_CATEGORIES := 	ELECTRICITY	HEAT_HIGH_T	HEAT_LOW_T	MOBILITY_PASSENGER	MOBILITY_FREIGHT	NON_ENERGY;																							
+set RESOURCES :=	ELECTRICITY	GASOLINE	DIESEL	BIOETHANOL	BIODIESEL	LFO		NG	SLF	SNG	WOOD	WET_BIOMASS	COAL		URANIUM	WASTE	H2	ELEC_EXPORT CO2_EMISSIONS RES_WIND RES_SOLAR  RES_HYDRO RES_GEO	 CO2_ATM CO2_INDUSTRY CO2_CAPTURED;										
+set BIOFUELS :=	BIOETHANOL	BIODIESEL	SNG	;																									
+set RE_RESOURCES :=	 BIOETHANOL	BIODIESEL	SNG WOOD RES_WIND RES_SOLAR  RES_HYDRO RES_GEO	WET_BIOMASS;																									
+set EXPORT := 	ELEC_EXPORT	CO2_EMISSIONS;																											
+																													
+set END_USES_TYPES_OF_CATEGORY["ELECTRICITY"] :=	ELECTRICITY;																												
+set END_USES_TYPES_OF_CATEGORY["HEAT_HIGH_T"] :=	HEAT_HIGH_T;																												
+set END_USES_TYPES_OF_CATEGORY["HEAT_LOW_T"] :=	HEAT_LOW_T_DHN	HEAT_LOW_T_DECEN;																											
+set END_USES_TYPES_OF_CATEGORY["MOBILITY_PASSENGER"] :=	MOB_PUBLIC	MOB_PRIVATE;																											
+set END_USES_TYPES_OF_CATEGORY["MOBILITY_FREIGHT"] :=	MOB_FREIGHT_RAIL	MOB_FREIGHT_BOAT	MOB_FREIGHT_ROAD;																										
+set END_USES_TYPES_OF_CATEGORY["NON_ENERGY"] :=	NON_ENERGY;																												
+																													
+set TECHNOLOGIES_OF_END_USES_TYPE["ELECTRICITY"] := 	NUCLEAR	CCGT		COAL_US	COAL_IGCC			PV	WIND_ONSHORE	WIND_OFFSHORE		HYDRO_RIVER		GEOTHERMAL;															
+set TECHNOLOGIES_OF_END_USES_TYPE["HEAT_HIGH_T"] := 	IND_COGEN_GAS	IND_COGEN_WOOD	IND_COGEN_WASTE	IND_BOILER_GAS	IND_BOILER_WOOD	IND_BOILER_OIL	IND_BOILER_COAL	IND_BOILER_WASTE	IND_DIRECT_ELEC;																				
+set TECHNOLOGIES_OF_END_USES_TYPE["HEAT_LOW_T_DHN"] := 	DHN_HP_ELEC	DHN_COGEN_GAS	DHN_COGEN_WOOD	DHN_COGEN_WET_BIOMASS	DHN_COGEN_WASTE	DHN_BOILER_GAS	DHN_BOILER_WOOD	DHN_BOILER_OIL	DHN_DEEP_GEO	DHN_SOLAR	;																		
+set TECHNOLOGIES_OF_END_USES_TYPE["HEAT_LOW_T_DECEN"] := 	DEC_HP_ELEC	DEC_THHP_GAS	DEC_COGEN_GAS	DEC_COGEN_OIL	DEC_ADVCOGEN_GAS	DEC_ADVCOGEN_H2	DEC_BOILER_GAS	DEC_BOILER_WOOD	DEC_BOILER_OIL	DEC_SOLAR	DEC_DIRECT_ELEC;																		
+set TECHNOLOGIES_OF_END_USES_TYPE["MOB_PUBLIC"] := 	TRAMWAY_TROLLEY	BUS_COACH_DIESEL	BUS_COACH_HYDIESEL	BUS_COACH_CNG_STOICH	BUS_COACH_FC_HYBRIDH2	TRAIN_PUB;																							
+set TECHNOLOGIES_OF_END_USES_TYPE["MOB_PRIVATE"] := 	CAR_GASOLINE	CAR_DIESEL	CAR_NG	CAR_HEV	CAR_PHEV	CAR_BEV	CAR_FUEL_CELL;																						
+set TECHNOLOGIES_OF_END_USES_TYPE["MOB_FREIGHT_RAIL"] :=	 TRAIN_FREIGHT;																												
+set TECHNOLOGIES_OF_END_USES_TYPE["MOB_FREIGHT_BOAT"] :=	BOAT_FREIGHT_DIESEL	BOAT_FREIGHT_NG	;																										
+set TECHNOLOGIES_OF_END_USES_TYPE["MOB_FREIGHT_ROAD"] := 	TRUCK_DIESEL	 TRUCK_FUEL_CELL TRUCK_NG;																											
+set TECHNOLOGIES_OF_END_USES_TYPE["NON_ENERGY"] := 	NON_ENERGY_OIL	NON_ENERGY_NG		;																									
+																													
+set STORAGE_TECH :=			 TS_DHN_SEASONAL	 SEASONAL_NG SEASONAL_H2 CO2_STORAGE	SLF_STO;										
+set INFRASTRUCTURE  :=		INLAND_WATER_TRANSPORT	ROADS	RAILWAYS	STATION_GAS_FUELS	STATION_LIQUID_FUELS	STATION_ELEC	STATION_H2																					
+	EFFICIENCY	DHN	GRID			H2_ELECTROLYSIS 	H2_NG	H2_BIOMASS	GASIFICATION_SNG	PYROLYSIS	ATM_CCS 	INDUSTRY_CCS 	SYN_METHANOLATION	SYN_METHANATION	BIOMETHANATION	SLF_TO_DIESEL	SLF_TO_GASOLINE	SLF_TO_LFO		;									
+																													
+																													
+																						
+# Additional sets, just needed for printing results																													
+set COGEN	:=  IND_COGEN_GAS	IND_COGEN_WOOD	IND_COGEN_WASTE	DHN_COGEN_GAS	DHN_COGEN_WOOD	DHN_COGEN_WASTE DEC_COGEN_GAS	DEC_COGEN_OIL DEC_ADVCOGEN_GAS	DEC_ADVCOGEN_H2;																					
+set BOILERS	:=	IND_BOILER_GAS	IND_BOILER_WOOD	IND_BOILER_OIL	IND_BOILER_COAL	IND_BOILER_WASTE	DHN_BOILER_GAS	DHN_BOILER_WOOD	DHN_BOILER_OIL	DEC_BOILER_GAS	DEC_BOILER_WOOD	DEC_BOILER_OIL;																	
+																													
+# -----------------------------																													
+# PARAMETERS NOT DEPENDING ON THE NUMBER OF TYPICAL DAYS : 																													
+# -----------------------------																													
+																													
+## PARAMETERS presented in Table 2.																													
+param i_rate := 	0.015	; # part [2.7.4]																											
+																													
+##New PARAEMTERS for PATHWAY:																													
+param max_inv_phase :=																													
+2015_2020 1e9																													
+2020_2025 1e9																													
+2025_2030 1e9																													
+2030_2035 1e9																													
+2035_2040 1e9																													
+2040_2045 1e9																													
+2045_2050 1e9;#0 => keep same system																													
+																													
+param t_phase := 	5	;#5 years																											
+																													
+param diff_2015_phase := 																													
+2015_2020 2.5																													
+2020_2025 7.5																													
+2025_2030 12.5																													
+2030_2035 17.5																													
+2035_2040 22.5																													
+2040_2045 27.5																													
+2045_2050 32.5; 																													
+																													
+param	limit_LT_renovation	:=	0.25	;#25% of refurbishment per period (5years) 																									
+param	limit_pass_mob_changes	:=	0.25	;#25% of refurbishment per period (5years) 																									
+param	limit_freight_changes	:=	0.25	;#25% of refurbishment per period (5years) 																									
+																													
+param c_grid_extra :=	1.52E+04	;	# cost to reinforce the grid due to intermittent renewable energy penetration. See 2.2.2																										
